@@ -1,4 +1,0 @@
-AmazonSQSAsyncClient amazonSQSAsyncClient = (AmazonSQSAsyncClient) AmazonSQSAsyncClientBuilder.standard()
-        .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("seu_access_key", "sua_secret_key")))
-        .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:9324", "us-east-1"))
-        .build();
