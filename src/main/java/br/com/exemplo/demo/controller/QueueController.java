@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/cartao")
+@RequestMapping("/fila")
 public class QueueController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class QueueController {
     private String uriQueue;
 
     @PostMapping
-    public ResponseEntity<String> consultaCartaoCredito(@RequestBody String mensagem){
+    public ResponseEntity<String> createQueue(@RequestBody String mensagem){
         queueMessagingTemplate.send(uriQueue, MessageBuilder.withPayload(mensagem).build());
         return ResponseEntity.ok("Solicitação enviada com sucesso.");
     }

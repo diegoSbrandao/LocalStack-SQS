@@ -7,6 +7,9 @@ import com.amazonaws.services.sqs.model.CreateQueueRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SpringBootApplication
 public class DemoApplication {
 
@@ -19,14 +22,15 @@ public class DemoApplication {
 						("http://localhost:9324", "us-east-1"))
 				.build();
 
-		CreateQueueRequest createQueueRequest = new CreateQueueRequest();
-		createQueueRequest.setQueueName("new_test_queue");
+        List<String> queueNames = Arrays.asList("new_test_queue_0", "new_test_queue_1", "new_test_queue_2");
 
-		amazonSQSAsyncClient.createQueue(createQueueRequest);
+        for (String queueName : queueNames) {
+            CreateQueueRequest createQueueRequest = new CreateQueueRequest();
+            createQueueRequest.setQueueName(queueName);
 
-		System.out.println("Fila criada com sucesso!");
+            amazonSQSAsyncClient.createQueue(createQueueRequest);
 
-
-	}
-
+            System.out.println("Fila criada com sucesso: " + queueName);
+        }
+    }
 }
